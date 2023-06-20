@@ -2,6 +2,7 @@
 using EmployeeManagement.Models;
 using EmployeeManagement.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement.Controllers
 {
@@ -12,6 +13,13 @@ namespace EmployeeManagement.Controllers
         public EmployeesController(DBContext empDBContext)
         {
             this.empDBContext = empDBContext;
+        }
+
+        [HttpGet]
+        public IActionResult index()
+        {
+            var employees = empDBContext.Employees.ToList();
+            return View(employees);
         }
 
         [HttpGet]
@@ -36,7 +44,7 @@ namespace EmployeeManagement.Controllers
             empDBContext.Employees.Add(employee);
             empDBContext.SaveChanges();
 
-            return RedirectToAction("Add");
+            return RedirectToAction("Index");
         }
     }
 }
