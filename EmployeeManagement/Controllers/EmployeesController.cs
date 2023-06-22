@@ -46,5 +46,13 @@ namespace EmployeeManagement.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult View(Guid id)
+        {
+            var employee = empDBContext.Employees.FirstOrDefault(x => x.Id == id);
+
+            return View(employee);
+        }
     }
 }
