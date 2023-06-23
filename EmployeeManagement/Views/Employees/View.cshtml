@@ -1,0 +1,33 @@
+﻿@model EmployeeManagement.Models.UpdateEmployee
+@{
+}
+
+<h3>Edit Employee</h3>
+<form method="post" action="View" class="mt-5">
+    <div class="mb-3">
+        <label for="" class="form-label">Employee ID</label>
+        <input type="text" class="form-control" asp-for="Name" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Employee Name</label>
+        <input type="text" class="form-control" asp-for="Name">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Employee Email</label>
+        <input type="email" class="form-control" asp-for="Email">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Employee Salary</label>
+        <input type="number" class="form-control" asp-for="Salary">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Employee Birth</label>
+        <input type="date" class="form-control" asp-for="DateOfBirth">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Employee Department</label>
+        <input type="text" class="form-control" asp-for="Department">
+    </div>
+
+    <button type="submit" class="btn btn-danger">Update</button>
+</form>

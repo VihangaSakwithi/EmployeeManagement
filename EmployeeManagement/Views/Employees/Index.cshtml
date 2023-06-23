@@ -27,8 +27,9 @@
 			<td>@employee.DateOfBirth.ToString("dd-mm-yyyy")</td>
 			<td>@employee.Department</td>
 				<td>
-					<a href="Employees/View/@employee.Id" style="color:dimgray"><b>Edit | </b></a>
-					<a href="Employees/Delete/@employee.Id" style=" color:red"><b>Delete</b></a>
+					<a href="Employees/View/@employee.Id" style="color:dimgray">Edit | </a>
+					<a style=" color:red" asp-controller="Employees"
+					asp-action="Delete">Delete</a>
 				</td>
 		</tr>
 		}
