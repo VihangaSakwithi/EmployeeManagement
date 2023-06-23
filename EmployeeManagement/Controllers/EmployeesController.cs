@@ -52,7 +52,57 @@ namespace EmployeeManagement.Controllers
         {
             var employee = empDBContext.Employees.FirstOrDefault(x => x.Id == id);
 
-            return View(employee);
+            if (employee != null)
+            {
+
+                var ViewModel = new UpdateEmployee()
+                {
+                    Id = employee.Id,
+                    Name = employee.Name,
+                    Email = employee.Email,
+                    Salary = employee.Salary,
+                    DateOfBirth = employee.DateOfBirth,
+                    Department = employee.Department,
+                };
+
+                return View(ViewModel);
+            }
+                return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult View(UpdateEmployee model)
+        {
+            var employee = empDBContext.Employees.Find(model.Id);
+
+            if (employee != null)
+            {
+                employee.Name = model.Name;
+                employee.Email = model.Email;
+                employee.Salary = model.Salary;
+                employee.DateOfBirth = model.DateOfBirth;
+                employee.Department = model.Department;
+
+                empDBContext.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+                return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Delete(UpdateEmployee model)
+        {
+            var employee = empDBContext.Employees.Find(model.Id);
+
+            if (employee != null)
+            {
+                empDBContext.Employees.Remove(employee);
+                empDBContext.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
         }
     }
 }
